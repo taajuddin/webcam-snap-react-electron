@@ -1,5 +1,18 @@
 import React, { Component } from 'react';
 import Webcam from 'react-webcam';
+import styled from 'styled-components' 
+
+const Wrapper = styled.div`
+    height:100vh;
+    width:100vw;
+    display:grid;
+    grid-template:1fr/1fr 1fr;
+
+    @media only screen and (max-width: 810px) {
+        grid-template: .5fr .5fr/1fr
+      }
+
+`
 
 export default class ReactCamera extends Component{
 
@@ -19,14 +32,16 @@ export default class ReactCamera extends Component{
     render(){
 
         return (
-            <div>   
-             <Webcam audio ={false} ref='webcam'/> 
+            <Wrapper>  
+                <div> <Webcam audio ={false} ref='webcam'/> 
              <br />
              <button onClick={this.screenshot}>Capture</button>
+             </div> 
+            
              <div>
              { this.state.screenshot ? <img src={this.state.screenshot} alt="pic"/> : null }
              </div>
-            </div>
+            </Wrapper>
             )
     }
 }
